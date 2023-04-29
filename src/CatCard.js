@@ -16,7 +16,7 @@ export class CatCard extends Component {
                     <Card.Text>
                       Cat Wieght : {this.props.catWieght}
                     </Card.Text>
-                    {/* <Button variant="primary">adopt</Button> */}
+                    <Button variant="primary" onClick={this.props.ownerContactInformation}>Contact The Owner</Button>
                   </Card.Body>
                 </Card>
               </Col>
