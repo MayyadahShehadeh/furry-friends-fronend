@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Header from './Header';
-import Main from './Main';
-import Home from './Home';
-// import Footer from './Footer';
-
-// import { withAuth0 } from "@auth0/auth0-react";
+import Header from './components/Header';
+import Main from './components/Main';
+import Home from './components/Home';
+// import Login from './Login';
+import { withAuth0 } from "@auth0/auth0-react";
+import Profile from './Profile';
+import './App.css'
 
 import {
   BrowserRouter as Router,
@@ -22,26 +22,29 @@ class App extends React.Component {
         <Router>
           <Header />
           <Routes>
+
             <Route exact path="/"
-              element= {<Home />}
-              >
-                </Route>
-          {/* <Route exact path="/" 
-              element={ 
-                this.props.auth0.isAuthenticated ? <BestBooks/> : <Login/>}> 
-                </Route> */}
-          <Route 
+              element={<Home />}>
+            </Route>
+
+            <Route
               exact path="/Main"
-              element={<Main/>}
-            >
-            </Route> 
-        </Routes>
-        {/* <Footer /> */}
-      </Router >
+              element={<Main />}>
+            </Route>
+
+            <Route
+              exact path="/Profile"
+              element={this.props.auth0.isAuthenticated && <Profile />}
+             >
+            </Route>
+            
+          </Routes>
+          {/* <Footer /> */}
+        </Router >
       </>
     )
   }
 }
 
 // export default withAuth0(App);
-export default App;
+export default withAuth0(App);
