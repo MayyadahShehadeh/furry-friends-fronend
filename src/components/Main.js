@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { Component } from 'react'
+import { withAuth0 } from '@auth0/auth0-react';
 
 import { Modal, Row, Form } from 'react-bootstrap'
 import CatCard from './CatCard';
+
 
 export class AllCats extends Component {
   constructor(props) {
@@ -12,39 +14,46 @@ export class AllCats extends Component {
       catOwnerEmail:'',
       catOwnerName:'',
       catOwnerPhone:'',
+      show:false
+  
 
-      show:false,
+    }}
 
-    }
-
-  }
-  // ----------------- to get all cats ---------------
+  // ------------- to get all cats ------------
   componentDidMount = async () => {
-    // const { user } = this.props.auth0;
+    const { user } = this.props.auth0;
     let catsData = await axios.get(`${process.env.REACT_APP_SERVER}/getCats`);
+    let getCatsData = await axios.get(`${process.env.REACT_APP_SERVER}/getAllCats`);
+    
+    // let getCatsDb = getCatsData.data;
+    let catsArray = [...getCatsData.data,...catsData.data];
+    // console.log('cat from bd',this.state.allCatsFromDb);
     this.setState({
-      allCats: catsData.data
+      allCats: catsArray
+      // allCatsFromDb:getCatsDb
     })
-
     console.log('allCats', this.state.allCats);
+    // console.log('all cats from db' ,getCatsData);
   }
   // -------------- to get cats according their breed -------------
   choosenBreed = async (e) => {
     const selecetedCatBreed = e.target.value;
     let catsData = await axios.get(`${process.env.REACT_APP_SERVER}/getCatsBreed?breedQuery=${selecetedCatBreed}`);
-    this.setState({
-      allCats: catsData.data
-    })
+    let choosenCat = await axios.get(`${process.env.REACT_APP_SERVER}/choosenCatt?choosenCat=${selecetedCatBreed}`);
 
+    let choosenCatArray = [...choosenCat.data,...catsData.data];
+
+    this.setState({
+      allCats: choosenCatArray
+    })
+    console.log('choosen cat filter', this.state.allCats );
   }
 
   // ------------ get person contact information ---------------- 
-
 ownerContactInformation = async (e) => {
   e.preventDefault();
   let url = `${process.env.REACT_APP_SERVER}/getCatOwner`;
   let ownerData = await axios.get(url);
-  // let getOwnerData = ownerData.data;
   console.log('axios owner data' , ownerData);
 this.setState({
   catOwnerEmail: ownerData.data.ownerEmail,
@@ -52,33 +61,22 @@ this.setState({
   catOwnerPhone: ownerData.data.ownerPhone,
   show:true
 })
-console.log('owner email', this.state.catOwnerEmail);
-console.log('owner name', this.state.catOwnerName);
-console.log('owner phone', this.state.catOwnerPhone);
 }
 
-showModal = () =>{
-  this.setState({
-    show:true
-  })
-}
-handleClose = () =>{
-  this.setState({
-    show:false
-  })
-}
+showModal = () =>{this.setState({show:true})}
+handleClose = () =>{this.setState({show:false})}
 
   render() {
     return (
       <>
-
+<p>{this.props.allCatsFromDb}</p>
               {/* <button onClick={this.ownerContactInformation}>Close</button> */}
 
     
-        <div className="row h-100 justify-content-center align-items-center" style={{ margin: '35px' }}>
-          <Form.Select aria-label="Default select example" name='catBreed' style={{ width: '50%' }}
+        <div className="row h-100 justify-content-center align-items-center" style={{ margin: '35px',marginTop:'100px' }}>
+          <Form.Select aria-label="Default select example" name='catBreed' style={{ width: '50%' }} placeholder='choose cat breed'
             onChange={(e) => this.choosenBreed(e)} >
-            <option defaultValue="" disabled hidden>Select breed</option>
+            <option valu="" >Select Cat Breed</option>
             <option value="">All</option>
             <option value="Burmese">Burmese</option>
             <option value="Chausie">Chausie</option>
@@ -123,10 +121,11 @@ handleClose = () =>{
             )
           })}
         </Row>
+       
 
       </>
     )
   }
 }
 
-export default AllCats
+export default withAuth0(AllCats);
