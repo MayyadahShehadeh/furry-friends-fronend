@@ -8,7 +8,9 @@ class Profile extends Component {
     super(props);
     this.state = {
       allCatsFromDb: [],
-      show: false
+      show: false,
+      showUpdateModal:false,
+      selectedCat:{}
 
     }
   }
@@ -24,7 +26,7 @@ class Profile extends Component {
   }
 
   // --------------- add new cat ------------------- 
-  addBook = async (e) => {
+  addCat = async (e) => {
     e.preventDefault();
     const { user } = this.props.auth0;
 
@@ -45,19 +47,46 @@ class Profile extends Component {
 
   deleteCat = async (catID) => {
     const { user } = this.props.auth0;
-
     let deletCat = await axios.delete(`${process.env.REACT_APP_SERVER}/deleteCat/${catID}?userEmail=${user.email}`)
     this.setState({
       allCatsFromDb: deletCat.data
-    })
+    })}
 
+  updateCat = async (catID) => {
+
+    let choosenCat = this.state.allCatsFromDb.find(item => {
+      return item._id === catID;
+    })
+    console.log({ choosenCat });
+
+    this.setState({
+      selectedCat: choosenCat,
+      showUpdateModal: true
+    })
+  }
+
+  updateCatInfo = async (e) => {
+    const { user } = this.props.auth0;
+    e.preventDefault();
+    let catInputs = {
+      userEmail: user.email,
+      catName: e.target.catName.value,
+      catLength: e.target.catLength.value,
+      catImg: e.target.catImg.value
+    }
+    let catID = this.state.selectedCat._id;
+    let catData = await axios.put(`${process.env.REACT_APP_SERVER}/updateCatData/${catID}`, catInputs);
+
+    this.setState({
+      allCatsFromDb: catData.data
+    })
   }
   handleShow = () => {
-    this.setState({ show: true })
+    this.setState({ show: true})
   }
 
   handleClose = () => {
-    this.setState({ show: false })
+    this.setState({ show: false ,showUpdateModal:false})
   }
 
 
@@ -66,35 +95,42 @@ class Profile extends Component {
       <>
 
 
-        <br />
+<Modal show={this.state.showUpdateModal} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={this.updateCatInfo}>
+              <input type="text" name='catName' defaultValue={this.state.selectedCat.catName} />
+              <input type="text" name='catLength' defaultValue={this.state.selectedCat.catLength} />
+              <input type="text" name='catImg' defaultValue={this.state.selectedCat.catImg} style={{width:'390px'}} />
+              <br />
+              <input type="submit" value="update" onClick={this.handleClose} />
+              <button onClick={this.handleClose}>Close</button>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+          </Modal.Footer>
+        </Modal>
 
+{/* ------------------------ ADD NEW CAT FORM ------------------------------- */}
+        <br />
         <Button variant="primary" onClick={this.handleShow} style={{ marginLeft: '700px' }}> Add Your Cat </Button>
         <br />
-
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form onSubmit={this.addBook} >
+            <form onSubmit={this.addCat} >
               <input type="text" name='catName' placeholder='add cat name' />
               <input type="text" name='catLength' placeholder='add cat Length' />
-              <input type="text" name='catImg' placeholder='add cat img src' />
-
-
-              {/* 
-
-              <Form.Group controlId="formFile" className="mb-3"  >
-                <Form.Label>add cat image</Form.Label>
-                <Form.Control type="file" name='catImg'/>
-              </Form.Group> */}
-
-              <input type="submit" value="Add Book" onClick={this.handleClose} />
+              <input type="text" name='catImg' placeholder='add cat img src' style={{width:'390px'}}/>
+              <input type="submit" value="Add Cat" onClick={this.handleClose} />
             </form>
           </Modal.Body>
           <Modal.Footer>
           </Modal.Footer>
-
         </Modal>
 
         {/* ------------------------------ cats cards on profile page --------------------- */}
@@ -105,20 +141,17 @@ class Profile extends Component {
                 <Card style={{ width: '18rem', marginTop: '150px', marginBottom: '20px' }}>
                   <Card.Img variant="top" src={item.catImg} />
                   <Card.Body>
-                    <Card.Title>cat nameeeeeeeeeeeee::: {item.catName}</Card.Title>
-                    <Card.Text> Book catLength :{item.catLength}
+                    <Card.Title>cat nameeeeee::: {item.catName}</Card.Title>
+                    <Card.Text>  catLength :{item.catLength}
                     </Card.Text>
                   </Card.Body>
-                  <button onClick={() => { this.props.deleteCat(item._id) }}>Delete</button>
-            {/* <button onClick={() => { this.props.updateBook(data._id) }} > update </button>  */}
+                  <button onClick={() => { this.deleteCat(item._id) }}>Delete</button>
+            <button onClick={() => { this.updateCat(item._id) }} > update </button> 
                 </Card>
               </Col>
             )
           })}
         </Row>
-
-
-
 
 
         {/* <img src={this.props.auth0.user.picture} alt={this.props.auth0.user.name} />
