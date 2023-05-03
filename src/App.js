@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Main from './components/Main';
 import Home from './components/Home';
-// import Login from './Login';
+import Login from './Login';
 import { withAuth0 } from "@auth0/auth0-react";
 import Profile from './Profile';
 import './App.css'
@@ -15,7 +15,6 @@ import {
 } from "react-router-dom";
 
 class App extends React.Component {
-
   render() {
     return (
       <>
@@ -31,7 +30,10 @@ class App extends React.Component {
               exact path="/Main"
               element={<Main />}>
             </Route>
-
+            <Route
+              exact path="/Login"
+              element={<Login />}>
+            </Route>
             <Route
               exact path="/Profile"
               element={this.props.auth0.isAuthenticated && <Profile />}
