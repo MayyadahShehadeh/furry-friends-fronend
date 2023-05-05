@@ -12,10 +12,12 @@ export class AllCats extends Component {
     super(props);
     this.state = {
       allCats: [],
+    
       catOwnerEmail:'',
       catOwnerName:'',
       catOwnerPhone:'',
-      show:false
+      show:false,
+      selectedCatsss:{}
   
 
     }}
@@ -51,25 +53,51 @@ export class AllCats extends Component {
   }
 
   // ------------ get person contact information ---------------- 
-ownerContactInformation = async (e) => {
-  e.preventDefault();
+ownerContactInformation = async (catID) => {
+  // e.preventDefault();
+  const { user } = this.props.auth0;
   let url = `${process.env.REACT_APP_SERVER}/getCatOwner`;
   let ownerData = await axios.get(url);
   console.log('axios owner data' , ownerData);
-this.setState({
-  catOwnerEmail: ownerData.data.ownerEmail,
-  catOwnerName: ownerData.data.ownerName,
-  catOwnerPhone: ownerData.data.ownerPhone,
-  show:true
-})
+let ownerDataa = ownerData.data;
+
+  let choosenCat = this.state.allCats.find(item => {
+    return item._id === catID
+
+  })
+  this.setState({
+   selectedCatsss:choosenCat
+  })
+
+  console.log('ssssss',this.state.selectedCatsss);
+     if (this.state.selectedCatsss._id){
+    
+      this.setState({
+        catOwnerEmail: this.state.selectedCatsss.userEmail,
+        catOwnerName: this.state.selectedCatsss.userName,
+        catOwnerPhone:this.state.selectedCatsss.userPhone,
+        show:true
+      })
+    }else if(!this.state.selectedCatsss._id ){
+      this.setState({
+        catOwnerEmail: ownerDataa.ownerEmail,
+        catOwnerName: ownerDataa.ownerName,
+        catOwnerPhone: ownerDataa.ownerPhone,
+        show:true
+      })
+
+    }
 }
 
 showModal = () =>{this.setState({show:true})}
 handleClose = () =>{this.setState({show:false})}
 
   render() {
+    
+
     return (
       <>
+      
 {/* <p>{this.props.allCatsFromDb}</p> */}
               {/* <button onClick={this.ownerContactInformation}>Close</button> */}
 
@@ -90,6 +118,8 @@ handleClose = () =>{this.setState({show:false})}
           </Form.Select>
         </div >
 
+
+  
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
@@ -104,6 +134,7 @@ handleClose = () =>{this.setState({show:false})}
           <Modal.Footer>
           </Modal.Footer>
         </Modal>
+  
 
 
         {/* ----------------------- TO RENDER ALL CATS IN CARDS -----------------------*/}
@@ -111,11 +142,12 @@ handleClose = () =>{this.setState({show:false})}
           {this.state.allCats.map((item, idx) => {
             return (
               <CatCard
+              id={item._id}
                 key={idx}
                 catImg={item.catImg}
                 catName={item.catName}
                 catLength={item.catLength}
-                catWieght={item.catWieght}
+                origin={item.origin}
                 showModal = {this.showModal}
                 ownerContactInformation = {this.ownerContactInformation}
               />
@@ -123,9 +155,6 @@ handleClose = () =>{this.setState({show:false})}
           })}
         </Row>
        
-<Home
-allCats = {this.state.allCats}
-/>
       </>
     )
   }

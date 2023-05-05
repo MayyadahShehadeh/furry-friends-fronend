@@ -63,7 +63,7 @@ export class Header extends Component {
 
                     <NavDropdown.Item href="/AdoptionProcess">Adoption Process</NavDropdown.Item>
 
-                    <NavDropdown.Item href="#action4">Care After Adoption</NavDropdown.Item>
+                    <NavDropdown.Item href="/CareAfterAdoption">Care After Adoption</NavDropdown.Item>
 
                     {/* <NavDropdown.Divider /> */}
 
