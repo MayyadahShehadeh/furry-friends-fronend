@@ -6,13 +6,17 @@ import Home from './components/Home';
 import Login from './Login';
 import { withAuth0 } from "@auth0/auth0-react";
 import Profile from './Profile';
-import './App.css'
+import '@coreui/coreui/dist/css/coreui.min.css'
 
+import './App.css'
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+import Footer from './components/Footer';
+import ContactUs from './components/ContactUs';
+import AdoptionProce from './components/AdoptionProce';
 
 class App extends React.Component {
   render() {
@@ -39,9 +43,17 @@ class App extends React.Component {
               element={this.props.auth0.isAuthenticated && <Profile />}
              >
             </Route>
-            
+            <Route
+              exact path="/ContactUs"
+              element={<ContactUs/>}>
+            </Route>
+
+            <Route
+              exact path="/AdoptionProcess"
+              element={<AdoptionProce/>}>
+            </Route>
           </Routes>
-          {/* <Footer /> */}
+          <Footer />
         </Router >
       </>
     )

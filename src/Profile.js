@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import { Card, Col, Row, Modal, Button, Form } from 'react-bootstrap'
+import {
+  MDBTabs,
+  MDBTabsItem,
+  MDBTabsLink,
+  MDBTabsContent,
+  MDBTabsPane,
+  MDBRow,
+  MDBCol
+} from 'mdb-react-ui-kit';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,7 +19,8 @@ class Profile extends Component {
       allCatsFromDb: [],
       show: false,
       showUpdateModal:false,
-      selectedCat:{}
+      selectedCat:{},
+      verticalActive:'tab1'
 
     }
   }
@@ -89,12 +99,88 @@ class Profile extends Component {
     this.setState({ show: false ,showUpdateModal:false})
   }
 
+// --------------------------------------------------------------------------------------------
+
+
+
+   handleVerticalClick = (value) => {
+    this.setState({
+       verticalActive:value
+     })
+    if (String(value) === this.state.verticalActive) {
+      return;
+    }
+  };
+
 
   render() {
     return (
       <>
+<br/>
+<br/>
+
+<MDBRow>
+        <MDBCol size='3'>
+          <MDBTabs className='flex-column text-center'>
+            <MDBTabsItem>
+              <MDBTabsLink onClick={() => this.handleVerticalClick('tab1')} active={this.state.verticalActive === 'tab1'}>
+                Your Information
+              </MDBTabsLink>
+            </MDBTabsItem>
+            <MDBTabsItem>
+              <MDBTabsLink onClick={() => this.handleVerticalClick('tab2')} active={this.state.verticalActive === 'tab2'}>
+                Your Cats
+              </MDBTabsLink>
+            </MDBTabsItem>
+            <MDBTabsItem>
+              <MDBTabsLink onClick={() => this.handleVerticalClick('tab3')} active={this.state.verticalActive === 'tab3'}>
+                Messages
+              </MDBTabsLink>
+            </MDBTabsItem>
+          </MDBTabs>
+        </MDBCol>
+        <MDBCol size='9'>
+          <MDBTabsContent>
+            <MDBTabsPane show={this.state.verticalActive === 'tab1'}>
+              
+            <img src={this.props.auth0.user.picture} alt={this.props.auth0.user.name} />
+        <h2>{this.props.auth0.user.name}</h2>
+        <p>{this.props.auth0.user.email}</p>
+
+            </MDBTabsPane>
+            <MDBTabsPane show={this.state.verticalActive === 'tab2'}>
+
+            <br />
+        <Button variant="primary" onClick={this.handleShow} style={{ marginLeft: '150px',backgroundColor:'pink', border:'#FFAB91' , color:'black' }}> Add Your Cat </Button>
+        <br />
+                {/* ------------------------------ cats cards on profile page --------------------- */}
+        <Row>
+          {this.state.allCatsFromDb.map(item => {
+            return (
+              <Col>
+                <Card style={{ width: '14rem',height:'15rem', marginTop: '80px', marginBottom: '15rem' }}>
+                  <Card.Img variant="top" src={item.catImg} />
+                  <Card.Body>
+                    <Card.Title> {item.catName}</Card.Title>
+                    <Card.Text>  cat Length :{item.catLength}
+                    </Card.Text>
+                  </Card.Body>
+                  <button onClick={() => { this.deleteCat(item._id) }}>Delete</button>
+            <button onClick={() => { this.updateCat(item._id) }} > update </button> 
+                </Card>
+              </Col>
+            )
+          })}
+        </Row>
+
+            </MDBTabsPane>
+            <MDBTabsPane show={this.state.verticalActive === 'tab3'}>Messages content</MDBTabsPane>
+          </MDBTabsContent>
+        </MDBCol>
+      </MDBRow>
 
 
+{/* ------------------------ MODAL FORM TO UPDATE CAT INFORMATIONS ------------- */}
 <Modal show={this.state.showUpdateModal} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
@@ -114,16 +200,14 @@ class Profile extends Component {
         </Modal>
 
 {/* ------------------------ ADD NEW CAT FORM ------------------------------- */}
-        <br />
-        <Button variant="primary" onClick={this.handleShow} style={{ marginLeft: '700px' }}> Add Your Cat </Button>
-        <br />
+      
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title></Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.addCat} >
-              <input type="text" name='catName' placeholder='add cat name' />
+              <input type="text" name='catName' placeholder='add cat Breed' />
               <input type="text" name='catLength' placeholder='add cat Length' />
               <input type="text" name='catImg' placeholder='add cat img src' style={{width:'390px'}}/>
               <input type="submit" value="Add Cat" onClick={this.handleClose} />
@@ -133,30 +217,10 @@ class Profile extends Component {
           </Modal.Footer>
         </Modal>
 
-        {/* ------------------------------ cats cards on profile page --------------------- */}
-        <Row>
-          {this.state.allCatsFromDb.map(item => {
-            return (
-              <Col>
-                <Card style={{ width: '18rem', marginTop: '150px', marginBottom: '20px' }}>
-                  <Card.Img variant="top" src={item.catImg} />
-                  <Card.Body>
-                    <Card.Title>cat nameeeeee::: {item.catName}</Card.Title>
-                    <Card.Text>  catLength :{item.catLength}
-                    </Card.Text>
-                  </Card.Body>
-                  <button onClick={() => { this.deleteCat(item._id) }}>Delete</button>
-            <button onClick={() => { this.updateCat(item._id) }} > update </button> 
-                </Card>
-              </Col>
-            )
-          })}
-        </Row>
+      
 
 
-        {/* <img src={this.props.auth0.user.picture} alt={this.props.auth0.user.name} />
-        <h2>{this.props.auth0.user.name}</h2>
-        <p>{this.props.auth0.user.email}</p> */}
+       
       </>
     )
   }

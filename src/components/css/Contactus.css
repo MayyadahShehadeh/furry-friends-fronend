@@ -1,0 +1,92 @@
+/* ----------------- contact-us component css for form ------------------  */
+.container{
+    margin: 0;
+    padding: 0;
+  width: 100;
+
+}
+/* .contactus-img{
+    opacity: 0.9;
+/* height: 700px;
+   width:11rm; */
+  
+*/
+.text-above-img1{
+    
+    text-shadow: 5px 5px rgba(228, 199, 103, 0.829);
+    position: absolute;
+    top: 300px;
+    left: 485px;
+    right: 50px;
+    font-weight: bold;
+    color: black;
+    font-size: 70px;
+}
+.text-above-img2{
+    text-shadow: 5px 5px pink;
+    position: absolute;
+    /* top: 400px; */
+    left: 485px;
+    right: 50px;
+   
+    color: black;
+    font-size: 30px;
+}
+.form-section{
+  width: 76rem;
+
+}
+  .mb-3{
+    text-shadow: 2px 2px rgba(228, 199, 103, 0.548);
+    background-color: antiquewhite;
+  font-weight:bold;
+    margin: 5%;
+    width: 50%;
+  }
+  .form-text{
+  margin-left: 10%;
+  }
+  .form-control{
+    border-radius: 5px;
+    box-shadow: -4px -4px 8px rgba(190, 190, 190, 0.5); 
+  }
+  /* .div-in-contactus{
+    width: 100%;
+    position: relative;
+  } */
+  .contactus-form-button{
+    background-color: rgba(255, 196, 0, 0.829);
+    border: rgba(255, 196, 0, 0.829);
+    color: black;
+    margin-left: 20rem;
+  }
+  
+  .right-section{
+    position: absolute;
+    top: 49rem;
+    left: 39rem;
+    width: 40rem;
+    padding: 2rem;
+    text-align: left;
+    word-spacing: 1rem;
+  }
+  .right-section h1{
+    text-align: justify;
+    font-size: 1.9rem;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.233);
+    text-shadow: 0 0 4px black;
+  }
+  .contactus-right-divs{
+    border-bottom: 4px solid black;
+    margin-top: 1.5rem;
+  }
+  .contactus-right-divs h3{
+    font-size: 1.5rem;
+    text-shadow: 0 0 8px rgba(199, 199, 199, 0.746);
+  }
+  .contactus-right-divs p a{
+    margin-right: 4rem;
+  }
+  .contactus-right-divs p a:nth-child(4){
+    margin-right: 5.7rem;
+  }
