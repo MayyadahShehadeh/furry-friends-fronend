@@ -4,6 +4,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 
 import { Modal, Row, Form } from 'react-bootstrap'
 import CatCard from './CatCard';
+import Home from './Home';
 
 
 export class AllCats extends Component {
@@ -69,7 +70,7 @@ handleClose = () =>{this.setState({show:false})}
   render() {
     return (
       <>
-<p>{this.props.allCatsFromDb}</p>
+{/* <p>{this.props.allCatsFromDb}</p> */}
               {/* <button onClick={this.ownerContactInformation}>Close</button> */}
 
     
@@ -122,7 +123,9 @@ handleClose = () =>{this.setState({show:false})}
           })}
         </Row>
        
-
+<Home
+allCats = {this.state.allCats}
+/>
       </>
     )
   }

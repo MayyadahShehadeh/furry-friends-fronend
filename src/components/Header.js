@@ -8,11 +8,10 @@ import './css/responsive.css'
 import img1 from './images/logo.png';
 
 
-
-
 import LogoutButton from '../LogoutButton';
 import LoginButton from '../LoginButton';
 import { withAuth0 } from '@auth0/auth0-react';
+import { Nav, NavDropdown, Container, Navbar, Form, Button } from 'react-bootstrap';
 
 export class Header extends Component {
 
@@ -42,8 +41,73 @@ export class Header extends Component {
   // }
 
   render() {
+
+
     return (
       <>
+        <header>
+          <Navbar bg="light" expand="lg" fixed="top">
+            <Container fluid>
+              <Navbar.Brand href="/"><img src={img1} style={{ width: '50px', height: '50px' }} /></Navbar.Brand>
+              <Navbar.Toggle aria-controls="navbarScroll" />
+              <Navbar.Collapse id="navbarScroll">
+                <Nav
+                  className="me-auto my-2 my-lg-0"
+                  style={{ maxHeight: '100px' }}
+                  navbarScroll
+                >
+                  <Nav.Link href="/">Home</Nav.Link>
+                  <Nav.Link href="/Main">Find Your Cat</Nav.Link>
+
+                  <NavDropdown title="Adopt" id="navbarScrollingDropdown">
+
+                    <NavDropdown.Item href="/AdoptionProcess">Adoption Process</NavDropdown.Item>
+
+                    <NavDropdown.Item href="#action4">Care After Adoption</NavDropdown.Item>
+
+                    {/* <NavDropdown.Divider /> */}
+
+
+                    {/* <NavDropdown.Item href="#action5">
+                      Something else here
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
+
+
+                  {
+                    this.props.auth0.isAuthenticated &&
+                    <Nav.Link href="/Profile">Your Profile</Nav.Link>
+                  }
+
+
+                  {this.props.auth0.isAuthenticated &&
+                    <img alt="imag" className="header-user-pic" src={this.props.auth0.user.picture} />}
+                  <div style={{
+                    position: 'absolute',
+                    right: '190px'
+                  }} >
+
+                    {this.props.auth0.isAuthenticated ?
+                      <LogoutButton /> :
+                      <Nav.Link href="/Login"><span class="user_icon" >
+                        <i class="fa fa-user" aria-hidden="true"></i></span>Login</Nav.Link>
+
+
+                    }
+                  </div>
+                  <Nav.Link href="/ContactUs">Contact Us </Nav.Link>
+
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </header>
+        <br />
+        {/* <br />
+        <br /> */}
+
+        {/* <div style={{ whiteSpace: 'nowrap' }}>
+
         <div>
           <div class="header_section">
             <div class="container-fluid">
@@ -86,22 +150,22 @@ export class Header extends Component {
                       <ul>
                       {this.props.auth0.isAuthenticated ?
                           <LogoutButton />:
-                      <a href="/Login"><span class="user_icon">   <i class="fa fa-user" aria-hidden="true"></i></span>Login</a>
-                    }
-                      
-                        {/* <a href="http://localhost:5000/Login"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a> */}
-                        {/* <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li> */}
-                      </ul>
+                          <a href="/Login"><span class="user_icon">   <i class="fa fa-user" aria-hidden="true"></i></span>Login</a>
+                    } */}
+
+        {/* <a href="http://localhost:5000/Login"><span class="user_icon"><i class="fa fa-user" aria-hidden="true"></i></span>Login</a> */}
+        {/* <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li> */}
+        {/* </ul>
                     </div>
                   </form>
                 </div>
               </nav>
             </div>
-          </div>
+          </div> */}
 
-          {/* <!-- header section end --> */}
+        {/* <!-- header section end --> */}
 
-          {/* <Navbar
+        {/* <Navbar
 
           fixed="top"
           variant="dark"
@@ -121,32 +185,33 @@ export class Header extends Component {
 
         > */}
 
-          {/* <Navbar.Brand>Catsss */}
-          {/* <Link to="/"><img src={logo} alt="imag" className="o2art-logo"/></Link> */}
+        {/* <Navbar.Brand>Catsss */}
+        {/* <Link to="/"><img src={logo} alt="imag" className="o2art-logo"/></Link> */}
 
-          {/* </Navbar.Brand>
+        {/* </Navbar.Brand>
           <Nav className="me-auto"> */}
-          {/* 
+        {/* 
             <Nav.Link href="#home">
-              <Link to="/">Home</Link>
-            </Nav.Link> */}
-          {/* 
+            <Link to="/">Home</Link>
+          </Nav.Link> */}
+        {/* 
             <Link to="/Main">Adopt Cat</Link>
 
             {this.props.auth0.isAuthenticated ? <Link to="/Profile">Profile</Link> : ''}
             <Link to="/">
-              {this.props.auth0.isAuthenticated ? (
+            {this.props.auth0.isAuthenticated ? (
                 <LogoutButton />
               ) : (
                 <LoginButton />
               )}
             </Link>
-          </Nav>
+            </Nav>
           {this.props.auth0.isAuthenticated &&
             <img alt="imag" className="header-user-pic" src={this.props.auth0.user.picture} />}
         </Navbar>
  */}
-        </div>
+        {/* </div>
+            </div> */}
       </>
     )
   }
