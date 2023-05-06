@@ -18,6 +18,7 @@ import Footer from './components/Footer';
 import ContactUs from './components/ContactUs';
 import AdoptionProce from './components/AdoptionProce';
 import CareAfterAdoption from './components/CareAfterAdoption';
+import Aboutus from './components/Aboutus';
 
 class App extends React.Component {
   render() {
@@ -58,6 +59,10 @@ class App extends React.Component {
               element={<CareAfterAdoption/>}>
             </Route>
 
+            <Route
+              exact path="/AboutUs"
+              element={<Aboutus/>}>
+            </Route>
           </Routes>
           <Footer />
         </Router >

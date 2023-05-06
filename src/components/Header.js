@@ -96,6 +96,8 @@ export class Header extends Component {
                     }
                   </div>
                   <Nav.Link href="/ContactUs">Contact Us </Nav.Link>
+                  <Nav.Link href="/AboutUs">About Us </Nav.Link>
+
 
                 </Nav>
               </Navbar.Collapse>
