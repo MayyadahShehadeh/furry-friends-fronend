@@ -98,10 +98,7 @@ handleClose = () =>{this.setState({show:false})}
     return (
       <>
       
-{/* <p>{this.props.allCatsFromDb}</p> */}
-              {/* <button onClick={this.ownerContactInformation}>Close</button> */}
-
-    
+{/* ------------------------- FILTER CATS --------------------- */}
         <div className="row h-100 justify-content-center align-items-center" style={{ margin: '35px',marginTop:'100px' }}>
           <Form.Select aria-label="Default select example" name='catBreed' style={{ width: '50%' }} placeholder='choose cat breed'
             onChange={(e) => this.choosenBreed(e)} >
@@ -118,8 +115,7 @@ handleClose = () =>{this.setState({show:false})}
           </Form.Select>
         </div >
 
-
-  
+  {/* ----------------------------- SHOW CONTACT OWNER INFORMATION IN MODAL ---------------- */}
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>
@@ -136,24 +132,27 @@ handleClose = () =>{this.setState({show:false})}
         </Modal>
   
 
-
         {/* ----------------------- TO RENDER ALL CATS IN CARDS -----------------------*/}
+        <div className='catsCardsClass' style={{margin:'35px'}}>
+
         <Row>
           {this.state.allCats.map((item, idx) => {
             return (
               <CatCard
               id={item._id}
-                key={idx}
-                catImg={item.catImg}
-                catName={item.catName}
-                catLength={item.catLength}
-                origin={item.origin}
-                showModal = {this.showModal}
-                ownerContactInformation = {this.ownerContactInformation}
+              key={idx}
+              catWieght={item.catWieght}
+              catImg={item.catImg}
+              catName={item.catName}
+              catLength={item.catLength}
+              origin={item.origin}
+              showModal = {this.showModal}
+              ownerContactInformation = {this.ownerContactInformation}
               />
-            )
-          })}
+              )
+            })}
         </Row>
+            </div>
        
       </>
     )

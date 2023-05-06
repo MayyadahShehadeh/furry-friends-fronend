@@ -6,7 +6,7 @@ export class Footer extends Component {
     return (
       <>
         
-        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' style={{margin:'0',    display: 'flex',
+        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' style={{margin:'0',    display: 'flex', bottom:'0', width:'100%', marginBottom:'0',
     flexWrap: 'inherit',
     alignItems: 'center',
     justifyContent:'space-between'}}>
