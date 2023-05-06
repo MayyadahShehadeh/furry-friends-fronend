@@ -47,15 +47,14 @@ export class Footer extends Component {
                 Furry Friends
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit.
+              Furry Friends is a site that makes it easy for people to connect to send their cats or adopt a new cat friend.
               </p>
             </MDBCol>
 
             <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
               <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
               <p>
-                <a href='#!' className='text-reset'>
+                <a href='' className='text-reset'>
                   Angular
                 </a>
               </p>

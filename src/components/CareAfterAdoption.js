@@ -36,7 +36,7 @@ export class CareAfterAdoption extends Component {
           <br />
 
 
-          <Accordion defaultActiveKey={['0']} alwaysOpen>
+          <Accordion defaultActiveKey={['0']} alwaysOpen flush>
             <Accordion.Item eventKey="0">
               <Accordion.Header style={{ backgroundColor: 'pink' }}>The First Few Days
               </Accordion.Header>
