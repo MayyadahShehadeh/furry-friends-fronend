@@ -47,7 +47,8 @@ class Profile extends Component {
       catLength: e.target.catLength.value,
       catImg: e.target.catImg.value,
       userPhone: e.target.userPhone.value,
-      origin:e.target.origin.value
+      catWieght: e.target.catWieght.value,
+      origin: e.target.origin.value
     }
     console.log(catInfo);
     let addCatData = await axios.post(`${process.env.REACT_APP_SERVER}/addNewCat`, catInfo);
@@ -83,10 +84,11 @@ class Profile extends Component {
     e.preventDefault();
     let catInputs = {
       userEmail: user.email,
-      userPhone:e.target.userPhone.value,
+      userPhone: e.target.userPhone.value,
       catName: e.target.catName.value,
       catLength: e.target.catLength.value,
       catImg: e.target.catImg.value,
+      catWieght: e.target.catWieght.value,
       origin: e.target.origin.value
     }
     let catID = this.state.selectedCat._id;
@@ -148,9 +150,17 @@ class Profile extends Component {
             <MDBTabsContent>
               <MDBTabsPane show={this.state.verticalActive === 'tab1'}>
 
-                <img src={this.props.auth0.user.picture} alt={this.props.auth0.user.name} />
-                <h2>{this.props.auth0.user.name}</h2>
-                <p>{this.props.auth0.user.email}</p>
+                <Card style={{ width: '18rem', marginLeft:'50px' }}>
+                  <Card.Img variant="top" src={this.props.auth0.user.picture} alt={this.props.auth0.user.name} />
+                  <Card.Body>
+                    <Card.Title>{this.props.auth0.user.name}</Card.Title>
+                    <Card.Text>
+                    <b>Your Email : </b>{this.props.auth0.user.email}
+                    </Card.Text>
+
+                  </Card.Body>
+                </Card>
+
 
               </MDBTabsPane>
               <MDBTabsPane show={this.state.verticalActive === 'tab2'}>
@@ -162,12 +172,14 @@ class Profile extends Component {
                 <Row>
                   {this.state.allCatsFromDb.map(item => {
                     return (
-                      <Col>
-                        <Card style={{ width: '14rem', height: '15rem', marginTop: '80px', marginBottom: '15rem' }}>
+                      <Col style={{ marginBottom: '300px' }}>
+                        <Card style={{ width: '14rem', height: '15rem', marginTop: '80px' }}>
                           <Card.Img variant="top" src={item.catImg} />
                           <Card.Body>
                             <Card.Title> {item.catName}</Card.Title>
                             <Card.Text>  Cat Length :{item.catLength}</Card.Text>
+                            <Card.Text>  Cat Wieght :{item.catWieght}</Card.Text>
+
                             <Card.Text>  Cat Origin :{item.origin}</Card.Text>
 
                           </Card.Body>
@@ -184,7 +196,7 @@ class Profile extends Component {
           </MDBCol>
         </MDBRow>
 
-        <br/><br/><br/>
+        <br /><br /><br />
         {/* ------------------------ MODAL FORM TO UPDATE CAT INFORMATIONS ------------- */}
         <Modal show={this.state.showUpdateModal} onHide={this.handleClose}>
           <Modal.Header closeButton>
@@ -195,7 +207,8 @@ class Profile extends Component {
               <input type="text" name='catName' defaultValue={this.state.selectedCat.catName} />
               <input type="text" name='catLength' defaultValue={this.state.selectedCat.catLength} />
               <input type="text" name='catImg' defaultValue={this.state.selectedCat.catImg} style={{ width: '390px' }} />
-              <input type="text" name='origin' defaultValue={this.state.selectedCat.origin} style={{ width: '390px' }} />
+              <input type="text" name='Wieght' defaultValue={this.state.selectedCat.origin} style={{ width: '390px' }} />
+              <input type="text" name='catWieght' defaultValue={this.state.selectedCat.catWieght} style={{ width: '390px' }} />
 
               <input type="number" name='userPhone' defaultValue={this.state.selectedCat.userPhone} style={{ width: '390px' }} />
               <br />
@@ -219,6 +232,7 @@ class Profile extends Component {
               <input type="text" name='catLength' placeholder='add cat Length' />
               <input type="text" name='catImg' placeholder='add cat img src' style={{ width: '390px' }} />
               <input type="text" name='origin' placeholder=' your cat origin' style={{ width: '390px' }} />
+              <input type="text" name='catWieght' placeholder=' your cat Wieght' style={{ width: '390px' }} />
 
               <input type="number" name='userPhone' placeholder='add your contact Phone' style={{ width: '390px' }} />
 

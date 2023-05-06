@@ -6,11 +6,12 @@ import React, { Component } from 'react'
 import image2 from './images/3858438.jpg'
 import "./css/styles2.css";
 import { Col, Row, Nav, Button } from 'react-bootstrap';
-import img1 from './images/logo.png'
+import img1 from './images/istockphoto55.jpg'
 import Carouse from './Carouse'
 import { MDBRipple } from 'mdb-react-ui-kit'
 import axios from 'axios';
-
+import HomeInfoSection from './HomeInfoSection';
+import HoverText from './HoverText';
 export class Home extends Component {
 
   constructor(props) {
@@ -70,7 +71,7 @@ export class Home extends Component {
             this.state.catsDataaa.slice(0, 4).map((item, idx)  => {
     return (
       <Col>
-        <div className="cardss" key={idx}>
+        <div className="cardss" key={idx} style={{height:'380px'}}>
           <img src={item.catImg} />
           <div className="cardss-body">
             <h2>{item.catName}</h2>
@@ -78,49 +79,18 @@ export class Home extends Component {
            {item.description}
   
             </p>
-            <Nav.Link href="/AdoptionProcess" ><Button variant="outline-primary">Go to Aoption Process</Button></Nav.Link>
+            <Nav.Link href="/AdoptionProcess" ><Button variant="outline-primary" style={{marginBottom:'40px'}}>Go to Aoption Process</Button></Nav.Link>
           </div>
         </div>
       </Col>
-  
-    )
-          })}
+    ) })}
 
         </Row>
 
         <br/><br/>
-        {/* <Col>
-          <div className="cardss">
-          <img src={img1} />
-          <div className="cardss-body">
-            <h2>1234</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h5>123555</h5>
-          </div>
-        </div>
-          </Col>
-          <Col>
-          <div className="cardss">
-          <img src={img1} />
-          <div className="cardss-body">
-            <h2>1234</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h5>123555</h5>
-          </div>
-        </div>
-          </Col>
-          <Col>
-          <div className="cardss">
-          <img src={img1} />
-          <div className="cardss-body">
-            <h2>1234</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h5>123555</h5>
-          </div>
-        </div>
-          </Col> */}
-
-
+        <HoverText/>
+        <HomeInfoSection/>
+        <img src={img1}  style={{width:'100%'}}/>
       </>
     )
   }

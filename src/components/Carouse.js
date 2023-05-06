@@ -7,7 +7,7 @@ import image1 from './images/Website_HeroBanner_TNRCatsnip.jpg'
 function CarouselFadeExample() {
   return (
 
-//  
+
     <Carousel fade>
       <Carousel.Item 
     //   style={{height:'200px',width:'200px'}}
