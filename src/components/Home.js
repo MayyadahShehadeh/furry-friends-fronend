@@ -79,7 +79,7 @@ export class Home extends Component {
            {item.description}
   
             </p>
-            <Nav.Link href="/AdoptionProcess" ><Button variant="outline-primary" style={{marginBottom:'40px'}}>Go to Aoption Process</Button></Nav.Link>
+            <Nav.Link href="/Main" ><Button variant="outline-primary" style={{marginBottom:'40px'}}>Go and Aopt</Button></Nav.Link>
           </div>
         </div>
       </Col>

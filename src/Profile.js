@@ -97,6 +97,7 @@ class Profile extends Component {
     this.setState({
       allCatsFromDb: catData.data
     })
+    console.log('22888',this.state.allCatsFromDb);
   }
   handleShow = () => {
     this.setState({ show: true })
@@ -139,11 +140,11 @@ class Profile extends Component {
                   Your Cats
                 </MDBTabsLink>
               </MDBTabsItem>
-              <MDBTabsItem>
+              {/* <MDBTabsItem>
                 <MDBTabsLink onClick={() => this.handleVerticalClick('tab3')} active={this.state.verticalActive === 'tab3'}>
                   Messages
                 </MDBTabsLink>
-              </MDBTabsItem>
+              </MDBTabsItem> */}
             </MDBTabs>
           </MDBCol>
           <MDBCol size='9'>
@@ -204,13 +205,21 @@ class Profile extends Component {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.updateCatInfo}>
-              <input type="text" name='catName' defaultValue={this.state.selectedCat.catName} />
-              <input type="text" name='catLength' defaultValue={this.state.selectedCat.catLength} />
-              <input type="text" name='catImg' defaultValue={this.state.selectedCat.catImg} style={{ width: '390px' }} />
-              <input type="text" name='Wieght' defaultValue={this.state.selectedCat.origin} style={{ width: '390px' }} />
-              <input type="text" name='catWieght' defaultValue={this.state.selectedCat.catWieght} style={{ width: '390px' }} />
+            cat breed :<input type="text" name='catName' defaultValue={this.state.selectedCat.catName} />
+            <br/>
+            cat length :<input type="text" name='catLength' defaultValue={this.state.selectedCat.catLength} />
+            <br/>
 
-              <input type="number" name='userPhone' defaultValue={this.state.selectedCat.userPhone} style={{ width: '390px' }} />
+            Image: <input type="text" name='catImg' defaultValue={this.state.selectedCat.catImg} style={{ width: '390px' }} />
+            <br/>
+
+            origin :<input type="text" name='origin' defaultValue={this.state.selectedCat.origin} />
+            <br/>
+
+            cat wieght : <input type="text" name='catWieght' defaultValue={this.state.selectedCat.catWieght} />
+            <br/>
+
+            your phone :<input type="number" name='userPhone' defaultValue={this.state.selectedCat.userPhone} />
               <br />
               <input type="submit" value="update" onClick={this.handleClose} />
               <button onClick={this.handleClose}>Close</button>

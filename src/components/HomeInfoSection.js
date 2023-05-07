@@ -18,7 +18,7 @@ export class HomeInfoSection extends Component {
          </div>
 		<ul class="details">
 			<li class="author"><a href="#">Furry Friends</a></li>
-			<li class="date">May. 6, 2023</li>
+			<li class="date">May. 7, 2023</li>
 			<li class="tags">
 				
 			</li>
@@ -42,7 +42,7 @@ export class HomeInfoSection extends Component {
         </div>
 		<ul class="details">
         <li class="author"><a href="#">Furry Friends</a></li>
-			<li class="date">May. 6, 2023</li>
+			<li class="date">May. 7, 2023</li>
 			<li class="tags">
 				
 			</li>
@@ -67,7 +67,7 @@ export class HomeInfoSection extends Component {
          </div>
 		<ul class="details">
 			<li class="author"><a href="#">Furry Friends</a></li>
-			<li class="date">May. 6, 2023</li>
+			<li class="date">May. 7, 2023</li>
 			<li class="tags">
 				
 			</li>
