@@ -57,7 +57,7 @@ export class Header extends Component {
                   navbarScroll
                 >
                   <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="/Main">Find Your Cat</Nav.Link>
+                  <Nav.Link href="/Main">Choose Your Cat</Nav.Link>
 
                   <NavDropdown title="Adopt" id="navbarScrollingDropdown">
 

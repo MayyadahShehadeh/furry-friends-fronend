@@ -52,44 +52,39 @@ export class Footer extends Component {
             </MDBCol>
 
             <MDBCol md='2' lg='2' xl='2' className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
+              <h6 className='text-uppercase fw-bold mb-4'>Our Pages</h6>
               <p>
-                <a href='' className='text-reset'>
-                  Angular
+                <a href='/' className='text-reset'>
+                  Home
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  React
+                <a href='/Main' className='text-reset'>
+                  Adopt Cat
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Vue
+                <a href='/AdoptionProcess' className='text-reset'>
+                Adoption Process
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Laravel
+                <a href='/CareAfterAdoption' className='text-reset'>
+                Care After Adoption
                 </a>
               </p>
             </MDBCol>
 
             <MDBCol md='3' lg='2' xl='2' className='mx-auto mb-4'>
-              <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
+              <h6 className='text-uppercase fw-bold mb-4'>reach Us </h6>
               <p>
-                <a href='#!' className='text-reset'>
-                  Pricing
+                <a href='/ContactUs' className='text-reset'>
+                  Contact Us
                 </a>
               </p>
               <p>
-                <a href='#!' className='text-reset'>
-                  Settings
-                </a>
-              </p>
-              <p>
-                <a href='#!' className='text-reset'>
-                  Orders
+                <a href='/AboutUs' className='text-reset'>
+                  About Us 
                 </a>
               </p>
               <p>
@@ -103,11 +98,11 @@ export class Footer extends Component {
               <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
               <p>
                 <MDBIcon color='secondary' icon='home' className='me-2' />
-                New York, NY 10012, US
+                Amman , Jordan
               </p>
               <p>
                 <MDBIcon color='secondary' icon='envelope' className='me-3' />
-                info@example.com
+                FurryFriends@example.com
               </p>
               <p>
                 <MDBIcon color='secondary' icon='phone' className='me-3' /> + 01 234 567 88

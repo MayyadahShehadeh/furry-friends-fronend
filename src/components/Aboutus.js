@@ -15,7 +15,7 @@ export class Aboutus extends Component {
     <div class="row text-center text-white">
         <div class="col-lg-8 mx-auto">
             <br/>
-            <h1 class="display-4" style={{color:'black', marginLeft:'75px'}}>Members</h1>
+            <h1 class="display-4" style={{color:'black'}}>Members</h1>
         </div>
     </div>
 </div>
@@ -51,7 +51,7 @@ export class Aboutus extends Component {
         </Accordion.Body>
       </Accordion.Item>
       <br/>
-      <Accordion.Item eventKey="1">
+      <Accordion.Item eventKey="0">
         <Accordion.Header>OUR PURPOSE</Accordion.Header>
         <Accordion.Body><b> 
         Furry Friends is a site that makes it easy for people to connect to send their cats or adopt a new cat friend.</b>

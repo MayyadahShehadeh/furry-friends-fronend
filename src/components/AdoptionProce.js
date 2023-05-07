@@ -58,7 +58,7 @@ export class AdoptionProce extends Component {
 
       </p>
       <p style={{fontSize:'22px'}}>
-      <b>2. Leash and collar (dogs) or carrier (cats and small pets).</b> Required when taking a pet home for safety reasons.
+      <b>2. a Carrier (cats and small pets).</b> Required when taking a cat home for safety reasons.
 
       </p>
 
