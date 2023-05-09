@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 // import './css/bootstrap.min.css'
 // import './css/responsive.css'
 // import Carousel from 'react-bootstrap/Carousel';
-import image2 from './images/3858438.jpg'
+
 import "./css/styles2.css";
 import { Col, Row, Nav, Button } from 'react-bootstrap';
 import img1 from './images/istockphoto55.jpg'
 import Carouse from './Carouse'
-import { MDBRipple } from 'mdb-react-ui-kit'
+// import { MDBRipple } from 'mdb-react-ui-kit'
 import axios from 'axios';
 import HomeInfoSection from './HomeInfoSection';
 import HoverText from './HoverText';
@@ -37,14 +37,6 @@ export class Home extends Component {
       catDescreption: catsDesc.data
 
     })
-//     console.log('all 222', this.state.catDescreption);
-// if(this.state.catsDataaa.catName == this.state.catDescreption.catName ){
-//   let catDat2 = [...this.state.catsDataaa,...this.state.catDescreption.description] 
-// }
-// this.setState({
-//   newData:catDat2
-// })
-// console.log('all newwwwww', this.state.newData);
 
   }
 
