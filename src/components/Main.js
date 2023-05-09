@@ -99,7 +99,7 @@ handleClose = () =>{this.setState({show:false})}
       <>
       
 {/* ------------------------- FILTER CATS --------------------- */}
-        <div className="row h-100 justify-content-center align-items-center" style={{ margin: '35px',marginTop:'100px' }}>
+        <div className="row h-100 justify-content-center align-items-center" style={{ margin: '35px',marginTop:'100px'}}>
           <Form.Select aria-label="Default select example" name='catBreed' style={{ width: '50%' }} placeholder='choose cat breed'
             onChange={(e) => this.choosenBreed(e)} >
             <option valu="" >Select Cat Breed</option>

@@ -5,8 +5,11 @@ export class Footer extends Component {
   render() {
     return (
       <>
+        <div className='footerSection'>
+
         
-        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' style={{margin:'0',    display: 'flex', bottom:'0', width:'100%', marginBottom:'0',
+        <MDBFooter bgColor='light' className='text-center text-lg-start text-muted' style={{margin:'0',    display: 'flex', position:'relative',
+        bottom:'0', width:'100%', marginBottom:'0',
     flexWrap: 'inherit',
     alignItems: 'center',
     justifyContent:'space-between'}}>
@@ -122,6 +125,7 @@ export class Footer extends Component {
         </a>
       </div>
     </MDBFooter>
+    </div>
       </>
     )
   }
